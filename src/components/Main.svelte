@@ -64,7 +64,7 @@
         "During the eighth week of my sixteen week internship, I was informed of three facts. 1) My supervisor had resigned. 2) My manager had resigned. 3) Our team faced a critical migration of Kubernetes infrastructure. I needed to finish this migration alone. At Tesla, I came into my own, as it was the first time I had to own a project of this magnitude alone.",
     },
   ];
-
+  // This will turn on when clicked
   let showModal = false;
   function openModal() {
     showModal = true;

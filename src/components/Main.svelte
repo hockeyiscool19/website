@@ -1,4 +1,7 @@
 <script>
+  import { Modal, Content, Trigger } from "sv-popup";
+  //   import More from "./More.svelte";
+
   import Step from "./Step.svelte";
 
   let steps = [
@@ -35,6 +38,12 @@
   let benefits = [
     {
       metric: "10x",
+      name: "Ughhhh, Math",
+      description:
+        "Before anything, I consider myself a debater and philosopher. After reaching the national parliamentary debate tournament, however, I resolved not to study my strength but to fix a weakness, mathematics. Mathematics was both my worst and least favorite subject in high school, but, as I gave the subject a second, third, and fourth chance, I learned to love and embrace the challenge.",
+    },
+    {
+      metric: "10x",
       name: "Slow Start",
       description:
         'I began programming journey at Davidson College\'s College Crisis initiative, studying Covid-19 data. That summer, I was lucky enough to have one Ben Kauffman believe in me before I believed in myself. "You are a data person" he told me. Ben convinced me to take an interview with Esme Learning, a now defunct start-up. I struggled all summer, but I left feeling inspired to learn more.',
@@ -45,7 +54,7 @@
         "After an eventful Davidson College night, Yellowtail Investments was born. Our goal was to eliminate the tedious copy and paste work of analysts. And we foolishly thought we could do it. Though ultimately unsuccessful, I learned how to guide technical vision within teams and how to build great software with other engineers.",
     },
     {
-      name: "Q2",
+      name: "Learn to develop",
       description:
         "Interning at Q2 Software, I gained experience navigating our team's highly abstracted code base. My mentor, Gage, was invaluable to my development, teaching me how to critically analyze software, code, and design patterns. My other team members always held my code to the highest level of scrutiny during code review, which was crucial to my professional development.",
     },
@@ -55,6 +64,15 @@
         "During the eighth week of my sixteen week internship, I was informed of three facts. 1) My supervisor had resigned. 2) My manager had resigned. 3) Our team faced a critical migration of Kubernetes infrastructure. I needed to finish this migration alone. At Tesla, I came into my own, as it was the first time I had to own a project of this magnitude alone.",
     },
   ];
+
+  let showModal = false;
+  function openModal() {
+    showModal = true;
+  }
+
+  function closeModal() {
+    showModal = false;
+  }
 </script>
 
 <main class="flex flex-col flex-1 p-4">
@@ -76,16 +94,79 @@
         <span class="text-violet-400"> covered</span>.
       </p>
       <div class="flex justify-center lg:justify-start space-x-4">
-        <button
-          class="blueShadow text-base sm:text-lg md:text-xl poppins relative overflow-hidden px-6 py-3 group rounded-full bg-white text-slate-950"
-        >
-          <div
-            class="absolute top-0 right-full w-full h-full bg-violet-400 opacity-20 group-hover:translate-x-full z-0 duration-200"
-          />
-          <h4 class="relative z-9">
-            <i class={"fa-solid fa-envelope"} /> Get in touch
-          </h4>
-        </button>
+        <Modal>
+          <Content>
+            <div class="mb-6">
+              <form>
+                <div class="mb-6">
+                  <label
+                    for="name"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >Name</label
+                  >
+                  <input
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Your Name"
+                    required
+                  />
+                </div>
+                <div class="mb-6">
+                  <label
+                    for="email"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >Your email</label
+                  >
+                  <input
+                    type="email"
+                    id="email"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="jdoe@example.com"
+                    required
+                  />
+                </div>
+
+                <div class="mb-6">
+                  <label
+                    for="message"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                    >Your message</label
+                  >
+                  <textarea
+                    id="message"
+                    rows="4"
+                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    placeholder="Your Message..."
+                  />
+                </div>
+
+                <button
+                  on:click={openModal}
+                  type="submit"
+                  class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  >Submit</button
+                >
+              </form>
+
+              <p class="text-center text-gray-500 text-xs">
+                &copy;2020 Acme Corp. All rights reserved.
+              </p>
+            </div>
+          </Content>
+
+          <!-- button, link, or any element that triggers popup on click -->
+          <Trigger>
+            <button
+              class="blueShadow text-base sm:text-lg md:text-xl poppins relative overflow-hidden px-6 py-3 group rounded-full bg-white text-slate-950"
+            >
+              <div
+                class="absolute top-0 right-full w-full h-full bg-violet-400 opacity-20 group-hover:translate-x-full z-0 duration-200"
+              />
+              <h4 class="relative z-9">
+                <i class={"fa-solid fa-envelope"} /> Get in touch
+              </h4>
+            </button>
+          </Trigger>
+        </Modal>
 
         <button
           class="blueShadow text-base sm:text-lg md:text-xl poppins relative overflow-hidden px-6 py-3 group rounded-full bg-white text-slate-950"
@@ -130,9 +211,6 @@
   </section>
   <section class="py-20 lg:py-32 flex flex-col gap-24" id="projects">
     <div class="flex flex-col gap-2 text-center">
-      <h6 class="text-large sm:text-xl md:text-2xl">
-        A few of my creative endeavors.
-      </h6>
       <h3 class="font-semibold text-3xl sm:text-4xl md:text-5xl">
         Curious to <span class="poppins text-violet-400">see</span> my work?
       </h3>
@@ -204,7 +282,7 @@
     >
       <h6 class="text-large sm:text-xl md:text-2xl">Want to know more?</h6>
       <h3 class="font-semibold text-3xl sm:text-4xl md:text-5xl">
-        Discover my <span class="poppins text-violet-400">journey</span>.
+        My <span class="poppins text-violet-400">journey</span>.
       </h3>
     </div>
     <div class="flex flex-col gap-20 w-full mx-auto max-w-[800px]">
@@ -219,7 +297,9 @@
             <h3 class="text-2xl sm:text-3xl md:text-5xl">
               {benefit.name}
             </h3>
-            <p>{benefit.description}</p>
+            <p>
+              {benefit.description}
+            </p>
           </div>
         </div>
       {/each}
@@ -292,3 +372,6 @@
     <p class="mx-auto">So why not invest?</p>
   </section>
 </main>
+
+<style>
+</style>

@@ -6,6 +6,12 @@
 
   let steps = [
     {
+      name: "Portfolio Website",
+      icon: "fa-solid fa-code",
+      description: "You are on it ;)",
+      link: "https://github.com/hockeyiscool19/website",
+    },
+    {
       name: "JordanGpt",
       icon: "fa-solid fa-robot",
       description:
@@ -142,11 +148,10 @@
                 <button
                   on:click={openModal}
                   type="submit"
-                  class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  class="text-white text-violet-400 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   >Submit</button
                 >
               </form>
-
               <p class="text-center text-gray-500 text-xs">
                 &copy;2020 Acme Corp. All rights reserved.
               </p>
@@ -226,6 +231,15 @@
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-10">
       <Step step={steps[0]}>
         <p>
+          You are one it! Implementing this app, I used
+          <strong class="text-violet-400">SvelteKit</strong>,
+          <strong class="text-violet-400">Tailwind CSS</strong>, and
+          <strong class="text-violet-400">JavaScript</strong>.
+        </p>
+      </Step>
+
+      <Step step={steps[1]}>
+        <p>
           JordanGpt an API exposing information about my career, as well as a <strong
             class="text-violet-400">langchain chatbot</strong
           >! I implemented this project using
@@ -234,7 +248,7 @@
           >.
         </p>
       </Step>
-      <Step step={steps[1]}>
+      <Step step={steps[2]}>
         <p>
           Terminal re-invents an old concept, <strong class="text-violet-400"
             >the terminal</strong
@@ -249,7 +263,7 @@
           >.
         </p>
       </Step>
-      <Step step={steps[2]}>
+      <Step step={steps[3]}>
         <p>
           Why send texts to your mom when you have <strong
             class="text-violet-400"
@@ -261,7 +275,7 @@
           </strong>, the program schedules texts to my mom &#128140;.
         </p>
       </Step>
-      <Step step={steps[3]}>
+      <Step step={steps[4]}>
         <p>
           In this project, I use Spotfy's open source API to retrieve my
           personal listening data. I expose this data with <strong
@@ -305,73 +319,46 @@
       {/each}
     </div>
     <h5 class={" text-2xl sm:text-3xl font-semibold text-center poppins "}>
-      The <span class="text-violet-400">Complete</span> Package
+      <span class="text-violet-400">Well</span>, you made it this far...
     </h5>
-    <div
-      class="flex flex-col overflow-x-scroll gap-10 max-w-[800px] mx-auto w-full"
-    >
-      <table class="bg-white text-slate-700 rounded text-center">
-        <thead class={"border-b border-solid border-slate-200  "}>
-          <tr class="">
-            <th />
-            <th class="whitespace-nowrap p-2 px-4">Candidate #1</th>
-            <th class="whitespace-nowrap p-2 px-4">Candidate #2</th>
-            <th class="whitespace-nowrap p-2 px-4">Candidate #3</th>
-            <th class="bg-violet-700 text-white whitespace-nowrap p-4 px-8"
-              >Me</th
-            >
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="border-b border-solid border-slate-200">
-            <td
-              class="border-r border-solid border-white pl-4 pr-8 py-4 font-semibold text-sm"
-              >Dedication</td
-            >
-            <td><i class="fa-solid fa-xmark text-slate-500" /></td>
-            <td><i class="fa-solid fa-check text-slate-500" /></td>
-            <td><i class="fa-solid fa-xmark text-slate-500" /></td>
-            <td><i class="fa-solid fa-check text-green-500" /></td>
-          </tr>
-          <tr class="border-b border-solid border-slate-200">
-            <td
-              class="border-r border-solid border-white pl-4 pr-8 py-4 font-semibold text-sm"
-              >Critical Thought</td
-            >
-            <td><i class="fa-solid fa-xmark text-slate-500" /></td>
-            <td><i class="fa-solid fa-check text-slate-500" /></td>
-            <td><i class="fa-solid fa-check text-slate-500" /></td>
-            <td><i class="fa-solid fa-check text-green-500" /></td>
-          </tr>
-          <tr>
-            <td
-              class="border-r border-solid border-white pl-4 pr-8 py-4 font-semibold text-sm"
-              >Interpersonal Skills</td
-            >
-            <td><i class="fa-solid fa-check text-slate-500" /></td>
-            <td><i class="fa-solid fa-check text-slate-500" /></td>
-            <td><i class="fa-solid fa-xmark text-slate-500" /></td>
-            <td><i class="fa-solid fa-check text-green-500" /></td>
-          </tr>
-          <tr class="border-t border-solid border-slate-200">
-            <td
-              class="border-r border-solid border-white pl-4 pr-8 py-4 font-semibold text-sm"
-              >Progamming Ability</td
-            >
-            <td><i class="fa-solid fa-check text-slate-500" /></td>
-            <td><i class="fa-solid fa-xmark text-slate-500" /></td>
-            <td><i class="fa-solid fa-check text-slate-500" /></td>
-            <td><i class="fa-solid fa-check text-green-500" /></td>
-          </tr>
-        </tbody>
-      </table>
+    <!-- <div>
+      <iframe
+        style="width: 50%; aspect-ratio: 16 / 9;"
+        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+        allowfullscreen
+      />
+    </div> -->
+    <div style="text-align: center;">
+      <iframe
+        style="width: 50%; aspect-ratio: 16 / 9; display: inline-block;"
+        src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+        allowfullscreen
+      />
     </div>
-    <div class="mx-auto -mt-12 italic sm:hidden opacity-50">
-      <p>Scroll to see more &rarr;</p>
-    </div>
-    <p class="mx-auto">So why not invest?</p>
   </section>
 </main>
 
 <style>
+  .blur-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(5px); /* Adjust the blur value as needed */
+    z-index: -1;
+  }
+
+  .overlay-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .input-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 </style>

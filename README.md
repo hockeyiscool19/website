@@ -13,6 +13,7 @@ In this project, I had the opportunity to learn and work with various technologi
 1. 💡 HTML and Tailwind CSS for creating the layout.
 2. 🐳 Docker for containerization.
 3. 🖱️ Implementing interactivity with hover effects, event listeners, and {#if} statements using Svelte.
+4. ⚙️ Node.js for server-side functionality.
 
 Despite the challenges, I'm still on my journey to mastering front-end development. I hope you enjoy exploring my portfolio!
 
@@ -22,3 +23,4 @@ Despite the challenges, I'm still on my journey to mastering front-end developme
 - 🎨 Tailwind CSS
 - 🐳 Docker
 - ☁️ Google Cloud Run (GCP)
+- ⚙️ Node.js

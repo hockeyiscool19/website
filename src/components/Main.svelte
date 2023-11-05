@@ -1,10 +1,39 @@
 <script>
+  let timer; // Initialize a timer variable
+
+  function resetTimer() {
+    clearTimeout(timer);
+    timer = setTimeout(shutdownApp, 60 * 10 * 1000);
+  }
+
+  function shutdownApp() {
+    console.log("Timeout");
+    alert("Max Session Limit Excession.");
+  }
+
+  function trackMouse() {
+    console.log("Mouse is tracking");
+  }
+
+  if (typeof window !== "undefined") {
+    window.addEventListener("mousemove", () => {
+      resetTimer();
+      trackMouse();
+    });
+
+    resetTimer();
+  }
   import { Modal, Content, Trigger } from "sv-popup";
-  //   import More from "./More.svelte";
 
   import Step from "./Step.svelte";
 
   let steps = [
+    {
+      name: "Portfolio Website",
+      icon: "fa-solid fa-code",
+      description: "You are on it ;)",
+      link: "https://github.com/hockeyiscool19/website",
+    },
     {
       name: "JordanGpt",
       icon: "fa-solid fa-robot",
@@ -16,21 +45,19 @@
       name: "Terminal",
       icon: "fa-solid fa-terminal",
       description:
-        "Terminal re-invents an old concept, the terminal. In this project, .",
+        "Terminal re-invents an old concept, the terminal. In this project.",
       link: "https://github.com/hockeyiscool19/terminal",
     },
     {
       name: "Mom Texter",
       icon: "fa-solid fa-person",
-      description:
-        "Augment your datasets with our filters and dataset manipulations to ensure your models are trained on the highest quality datasets (coming soon).",
+      description: "Description",
       link: "https://github.com/hockeyiscool19/mom-texter",
     },
     {
       name: "Spotify API",
       icon: "fa-solid fa-music",
-      description:
-        "Augment your datasets with our filters and dataset manipulations to ensure your models are trained on the highest quality datasets (coming soon).",
+      description: "Description",
       link: "https://github.com/hockeyiscool19/spotify_API",
     },
   ];
@@ -64,14 +91,20 @@
         "During the eighth week of my sixteen week internship, I was informed of three facts. 1) My supervisor had resigned. 2) My manager had resigned. 3) Our team faced a critical migration of Kubernetes infrastructure. I needed to finish this migration alone. At Tesla, I came into my own, as it was the first time I had to own a project of this magnitude alone.",
     },
   ];
+  let blurValue = 20; // Initialize the blurValue
 
+  // This will turn on when clicked
   let showModal = false;
   function openModal() {
-    showModal = true;
+    document.execCommand("copy");
+
+    // showModal = true;
+    // blurValue = 20; // Change the blurValue to the desired value over half a second
   }
 
   function closeModal() {
     showModal = false;
+    blurValue = 0;
   }
 </script>
 
@@ -94,79 +127,81 @@
         <span class="text-violet-400"> covered</span>.
       </p>
       <div class="flex justify-center lg:justify-start space-x-4">
-        <Modal>
-          <Content>
-            <div class="mb-6">
-              <form>
+        <!-- <Modal style="backdrop-filter: blur({blurValue}px);">
+          {#if showModal}
+            <div
+              style="backdrop-filter: blur({20}px); transition: backdrop-filter 0.5s ease;"
+            >
+              <Content>
                 <div class="mb-6">
-                  <label
-                    for="name"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                    >Name</label
-                  >
-                  <input
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Your Name"
-                    required
-                  />
-                </div>
-                <div class="mb-6">
-                  <label
-                    for="email"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                    >Your email</label
-                  >
-                  <input
-                    type="email"
-                    id="email"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="jdoe@example.com"
-                    required
-                  />
-                </div>
+                  <form>
+                    <div class="mb-6">
+                      <label
+                        for="name"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        >Name</label
+                      >
+                      <input
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Your Name"
+                        required
+                      />
+                    </div>
+                    <div class="mb-6">
+                      <label
+                        for="email"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        >Your email</label
+                      >
+                      <input
+                        type="email"
+                        id="email"
+                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="yname@example.com"
+                        required
+                      />
+                    </div>
 
-                <div class="mb-6">
-                  <label
-                    for="message"
-                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                    >Your message</label
-                  >
-                  <textarea
-                    id="message"
-                    rows="4"
-                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Your Message..."
-                  />
+                    <div class="mb-6">
+                      <label
+                        for="message"
+                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                        >Your message</label
+                      >
+                      <textarea
+                        id="message"
+                        rows="4"
+                        class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                        placeholder="Your Message..."
+                      />
+                    </div>
+
+                    <button
+                      on:click={closeModal}
+                      type="submit"
+                      class="text-white text-violet-400 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                      >Submit</button
+                    >
+                  </form>
                 </div>
-
-                <button
-                  on:click={openModal}
-                  type="submit"
-                  class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                  >Submit</button
-                >
-              </form>
-
-              <p class="text-center text-gray-500 text-xs">
-                &copy;2020 Acme Corp. All rights reserved.
-              </p>
+              </Content>
             </div>
-          </Content>
+          {/if}
 
-          <!-- button, link, or any element that triggers popup on click -->
           <Trigger>
             <button
               class="blueShadow text-base sm:text-lg md:text-xl poppins relative overflow-hidden px-6 py-3 group rounded-full bg-white text-slate-950"
+              on:click={openModal}
             >
               <div
                 class="absolute top-0 right-full w-full h-full bg-violet-400 opacity-20 group-hover:translate-x-full z-0 duration-200"
               />
               <h4 class="relative z-9">
-                <i class={"fa-solid fa-envelope"} /> Get in touch
+                <i class={"fa-solid fa-envelope"} /> Email
               </h4>
             </button>
           </Trigger>
-        </Modal>
+        </Modal> -->
 
         <button
           class="blueShadow text-base sm:text-lg md:text-xl poppins relative overflow-hidden px-6 py-3 group rounded-full bg-white text-slate-950"
@@ -192,6 +227,22 @@
           />
           <h4 class="relative z-9">
             <a
+              href={"https://www.linkedin.com/in/jordan-eisenman-394511202/"}
+              class="block z-10 text-inherit no-underline"
+            >
+              <i class={"fa-brands fa-linkedin"} /> LinkedIn
+            </a>
+          </h4>
+        </button>
+
+        <button
+          class="blueShadow text-base sm:text-lg md:text-xl poppins relative overflow-hidden px-6 py-3 group rounded-full bg-white text-slate-950"
+        >
+          <div
+            class="absolute top-0 right-full w-full h-full bg-violet-400 opacity-20 group-hover:translate-x-full z-0 duration-200"
+          />
+          <h4 class="relative z-9">
+            <a
               href={"https://github.com/hockeyiscool19/"}
               class="block z-10 text-inherit no-underline"
             >
@@ -209,59 +260,55 @@
       />
     </div>
   </section>
-  <section class="py-20 lg:py-32 flex flex-col gap-24" id="projects">
+  <section class="py-20 lg:py-32 flex flex-col gap-20" id="projects">
     <div class="flex flex-col gap-2 text-center">
       <h3 class="font-semibold text-3xl sm:text-4xl md:text-5xl">
         Curious to <span class="poppins text-violet-400">see</span> my work?
       </h3>
     </div>
-    <a
-      href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
-      target="_blank"
-      class="mx-auto px-4 py-2 rounded-md border border-solid border-white flex items-center gap-2 -mb-4 sm:-mb-0 -mt-10 hover:border-violet-700 duration-200"
-    >
-      <i class="fa-regular fa-circle-play" />
-      <p>Watch the video</p>
-    </a>
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-10">
       <Step step={steps[0]}>
         <p>
-          JordanGpt an API exposing information about my career, as well as a <strong
-            class="text-violet-400">langchain chatbot</strong
-          >! I implemented this project using
+          You are one it! Implementing this app, I used
+          <strong class="text-violet-400">SvelteKit</strong>,
+          <strong class="text-violet-400">Tailwind CSS</strong>, and
+          <strong class="text-violet-400">JavaScript</strong>.
+        </p>
+      </Step>
+
+      <Step step={steps[1]}>
+        <p>
+          JordanGpt is an <strong class="text-violet-400"
+            >API/chatbot exposing</strong
+          >
+          information about my career! I implemented this project using
           <strong class="text-violet-400"
             >Flask, Langchain, Docker, Firestore, and Cloud Run</strong
           >.
         </p>
       </Step>
-      <Step step={steps[1]}>
+      <Step step={steps[2]}>
         <p>
-          Terminal re-invents an old concept, <strong class="text-violet-400"
-            >the terminal</strong
-          >. <strong class="text-violet-400">Terminals</strong> of old take in
-          strict commands and manipulate your local programs and machine. This
-          <strong class="text-violet-400">terminal</strong> is serves as a
-          chatbot which takes in text, like a chatbot, but is capable of
-          manipulating my email. In this project, I use
+          <strong class="text-violet-400">Terminal</strong> is a chatbot capable
+          of using my email and other applications. I use
           <strong class="text-violet-400"
             >Python, OpenAi's API, Streamlit chat UI, Langchain agents,
             firebase, and Google's API</strong
           >.
         </p>
       </Step>
-      <Step step={steps[2]}>
+      <Step step={steps[3]}>
         <p>
           Why send texts to your mom when you have <strong
             class="text-violet-400"
             >machine learning
-          </strong>. In this project, I implement a CLI program capable of
-          taking in a list of dates. Using
+          </strong>. Using
           <strong class="text-violet-400"
             >AWS, ECS, Fargate, and Twillio
-          </strong>, the program schedules texts to my mom &#128140;.
+          </strong>, this program schedules texts to my mom.
         </p>
       </Step>
-      <Step step={steps[3]}>
+      <Step step={steps[4]}>
         <p>
           In this project, I use Spotfy's open source API to retrieve my
           personal listening data. I expose this data with <strong
@@ -273,17 +320,19 @@
     </div>
   </section>
   <section
-    id="about"
+    id="journey"
     class="py-20 pt-10 lg:pt-16 lg:py-32 flex flex-col gap-16 sm:gap-20 md:gap-24 relative"
   >
     <!-- <div class="z-[-1] bg-violet-950 w-screen left-1/2 -translate-x-1/2 top-0 h-full absolute"> </div> -->
-    <div
-      class="flex flex-col gap-2 text-center relative before:absolute before:top-0 before:left-0 before:w-2/3 before:h-1.5 before:bg-violet-700 after:absolute after:bottom-0 after:right-0 after:w-2/3 after:h-1.5 after:bg-violet-700 py-4"
-    >
-      <h6 class="text-large sm:text-xl md:text-2xl">Want to know more?</h6>
-      <h3 class="font-semibold text-3xl sm:text-4xl md:text-5xl">
-        My <span class="poppins text-violet-400">journey</span>.
-      </h3>
+    <div class="md:p-5">
+      <div
+        class="md:p-5 flex flex-col gap-2 text-center relative before:absolute before:top-0 before:left-0 before:w-2/3 before:h-1.5 before:bg-violet-700 after:absolute after:bottom-0 after:right-0 after:w-2/3 after:h-1.5 after:bg-violet-700 py-4"
+      >
+        <h6 class="text-large sm:text-xl md:text-2xl">Want to know more?</h6>
+        <h3 class="font-semibold text-3xl sm:text-4xl md:text-5xl">
+          My <span class="poppins text-violet-400">journey</span>.
+        </h3>
+      </div>
     </div>
     <div class="flex flex-col gap-20 w-full mx-auto max-w-[800px]">
       {#each benefits as benefit, index}
@@ -304,72 +353,25 @@
         </div>
       {/each}
     </div>
-    <h5 class={" text-2xl sm:text-3xl font-semibold text-center poppins "}>
-      The <span class="text-violet-400">Complete</span> Package
-    </h5>
-    <div
-      class="flex flex-col overflow-x-scroll gap-10 max-w-[800px] mx-auto w-full"
-    >
-      <table class="bg-white text-slate-700 rounded text-center">
-        <thead class={"border-b border-solid border-slate-200  "}>
-          <tr class="">
-            <th />
-            <th class="whitespace-nowrap p-2 px-4">Candidate #1</th>
-            <th class="whitespace-nowrap p-2 px-4">Candidate #2</th>
-            <th class="whitespace-nowrap p-2 px-4">Candidate #3</th>
-            <th class="bg-violet-700 text-white whitespace-nowrap p-4 px-8"
-              >Me</th
-            >
-          </tr>
-        </thead>
-        <tbody>
-          <tr class="border-b border-solid border-slate-200">
-            <td
-              class="border-r border-solid border-white pl-4 pr-8 py-4 font-semibold text-sm"
-              >Dedication</td
-            >
-            <td><i class="fa-solid fa-xmark text-slate-500" /></td>
-            <td><i class="fa-solid fa-check text-slate-500" /></td>
-            <td><i class="fa-solid fa-xmark text-slate-500" /></td>
-            <td><i class="fa-solid fa-check text-green-500" /></td>
-          </tr>
-          <tr class="border-b border-solid border-slate-200">
-            <td
-              class="border-r border-solid border-white pl-4 pr-8 py-4 font-semibold text-sm"
-              >Critical Thought</td
-            >
-            <td><i class="fa-solid fa-xmark text-slate-500" /></td>
-            <td><i class="fa-solid fa-check text-slate-500" /></td>
-            <td><i class="fa-solid fa-check text-slate-500" /></td>
-            <td><i class="fa-solid fa-check text-green-500" /></td>
-          </tr>
-          <tr>
-            <td
-              class="border-r border-solid border-white pl-4 pr-8 py-4 font-semibold text-sm"
-              >Interpersonal Skills</td
-            >
-            <td><i class="fa-solid fa-check text-slate-500" /></td>
-            <td><i class="fa-solid fa-check text-slate-500" /></td>
-            <td><i class="fa-solid fa-xmark text-slate-500" /></td>
-            <td><i class="fa-solid fa-check text-green-500" /></td>
-          </tr>
-          <tr class="border-t border-solid border-slate-200">
-            <td
-              class="border-r border-solid border-white pl-4 pr-8 py-4 font-semibold text-sm"
-              >Progamming Ability</td
-            >
-            <td><i class="fa-solid fa-check text-slate-500" /></td>
-            <td><i class="fa-solid fa-xmark text-slate-500" /></td>
-            <td><i class="fa-solid fa-check text-slate-500" /></td>
-            <td><i class="fa-solid fa-check text-green-500" /></td>
-          </tr>
-        </tbody>
-      </table>
+  </section>
+  <section id="surprise">
+    <div class="md:p-20">
+      <div
+        class="md:p-5 flex flex-col gap-2 text-center relative before:absolute before:top-0 before:left-0 before:w-2/3 before:h-1.5 before:bg-violet-700 after:absolute after:bottom-0 after:right-0 after:w-2/3 after:h-1.5 after:bg-violet-700 py-4"
+      >
+        <h3 class="font-semibold text-3xl sm:text-4xl md:text-5xl">
+          <span class="poppins text-violet-400">Well</span>, you made it this
+          far...
+        </h3>
+      </div>
+      <div class="md:p-20 flex justify-center items-center">
+        <iframe
+          style="width: 70%; aspect-ratio: 16 / 9; display: inline-block; border-radius: 20px"
+          src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+          allowfullscreen
+        />
+      </div>
     </div>
-    <div class="mx-auto -mt-12 italic sm:hidden opacity-50">
-      <p>Scroll to see more &rarr;</p>
-    </div>
-    <p class="mx-auto">So why not invest?</p>
   </section>
 </main>
 
